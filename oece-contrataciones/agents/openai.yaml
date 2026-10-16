@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analista de contrataciones OECE"
+  short_description: "Consulta procesos y prepara informes ejecutivos"
+  default_prompt: "Usa $oece-contrataciones para analizar los procesos de CENARES convocados en 2025 y preparar una presentación ejecutiva."
