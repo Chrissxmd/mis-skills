@@ -1,13 +1,13 @@
 ---
 name: oece-contrataciones
-description: Consultar compras públicas peruanas del OECE y SEACE mediante API OCDS o descargas oficiales, analizar entidades como CENARES por año y generar listados verificables, gráficos y presentaciones ejecutivas. Usar para procesos, adjudicaciones, proveedores, montos, evolución e informes de contratación pública.
+description: Consultar compras públicas peruanas del OECE y SEACE mediante API OCDS o descargas oficiales, verificar precios unitarios con sus cantidades, unidades y documentos, y generar informes de procesos, adjudicaciones, proveedores y montos.
 ---
 
 # Analista OECE
 Responder en español y ejecutar el trabajo solicitado con herramientas disponibles. Leer references/fuentes.md antes de consultar.
 
 ## Alcance
-- Resolver entidad por nombre oficial e identificadores en fuentes oficiales y datos. No confundir CENARES con todo MINSA ni entidad compradora con unidad convocante. Registrar alias incluidos; preguntar solo ante ambigüedad material.
+- Resolver entidad por nombre oficial e identificadores en fuentes oficiales y datos. No confundir CENARES con todo MINSA ni entidad compradora con unidad convocante. Registrar alias incluidos; una sigla como FISSAL puede no aparecer en buyer.name. Si una búsqueda por sigla no devuelve filas, verificar el nombre e ID antes de declarar ausencia de procesos. Preguntar solo ante ambigüedad material.
 - Para "procesos realizados en 2025", asumir convocados en 2025 y declarar este criterio. Usar fecha inicial de convocatoria en America/Lima e intervalo [2025-01-01, 2026-01-01). No sustituirla por fecha de publicación OCDS, actualización o año del código.
 - Distinguir procesos convocados, adjudicaciones y contratos del año. Distinguir estado actual y estado al cierre; para cierre reconstruir únicamente publicaciones anteriores al corte mediante reglas OCDS.
 
@@ -29,6 +29,12 @@ Responder en español y ejecutar el trabajo solicitado con herramientas disponib
 - Calcular montos con precisión decimal y declarar cualquier redondeo; conservar el valor original. No atribuir adjudicaciones sin proveedor a un adjudicatario ni tratar un estado ausente como vigente. Separar estos casos en el resumen.
 - Comprobar identidad, intervalo, unicidad, fechas ausentes, extracción agotada y conciliación de conteos con fuente oficial equivalente si existe.
 - Declarar "completa respecto del universo consultado" solo con cobertura temporal/de entidad y paginación verificadas, indicando restricciones del publicador. En otro caso declarar parcial o no verificada y causa.
+
+## Precios unitarios y revisión de cálculos
+- Cuando se pida un precio unitario, una comparación de precios o verificar un cálculo, leer y aplicar [references/precios-unitarios.md](references/precios-unitarios.md). Buscar activamente cómo obtener la unidad económica solicitada; no limitarse a dividir el monto entre la cantidad del JSON ni dejar la revisión documental como una oferta para otro turno.
+- Diferenciar cantidad publicada, cantidad económica y prestaciones incluidas. Un cociente aritmético correcto no acredita un precio por sesión, paciente, mes, tableta o ampolla. No presentar ni incluir en rankings un precio como verificado mientras su denominador siga siendo ambiguo.
+- Si falta la unidad económica, hay un paquete, interviene un plazo o las fuentes no concilian, revisar los documentos oficiales del mismo proceso, ítem y etapa: buena pro/oferta aceptada, bases integradas y anexos pertinentes; contrato o modificaciones cuando correspondan al precio solicitado. Aplicar el procedimiento y las condiciones de parada de la referencia.
+- Entregar una ficha reproducible por precio con el monto, moneda y alcance; cantidades originales y económicas; unidades, presentación, factores y plazo aplicables; fórmula con números; evidencia enlazada por dato; conciliación y estado de verificación. Explicar cualquier discrepancia y qué dato falta. Conservar el valor provisional sin confundirlo con el precio finalmente verificado.
 
 ## Entregar
 - Producir resumen y listado detallado CSV/XLSX si se piden todos los procesos; no entregar únicamente principales procesos. Mantener adjudicaciones y contratos en tablas separadas cuando corresponda.
